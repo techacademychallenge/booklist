@@ -2,10 +2,14 @@
   <div class="cover">
     <div class="cover-inner">
       <div class="cover-contents">
-        <h1>本棚アプリ</h1>
+        <%= form_tag(search_path,  class: 'form-inline') do %>
+          <div class="form-group">
+            <%= text_field_tag :keyword, @keyword, class: 'form-control input-lg', placeholder: "キーワードを入力", size: 40 %>
+          </div>
+          <%= submit_tag '本を検索', class: 'btn btn-success btn-lg' %>
+        <% end %>
       </div>
     </div>
   </div>
 <% end %>
-
-<p>テスト</p>
+<%= render 'books/books', books: @books %>
