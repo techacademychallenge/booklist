@@ -8,12 +8,24 @@
   <div class="status text-center">
     <ul>
       <li>
-        <div class="status-label">HAVE</div>
+        <div class="status-label">持っている本</div>
         <div id="have_count" class="status-value">
-          <%= @have_count %>
+          <%= link_to @have_count, user_path(current_user), {:class => "string"} %>
         </div>
       </li>
     </ul>
   </div>
+</div>
+<div class="category">
+  <ul>
+    <% @categories.each do |name, count| %>
+      <li>
+        <%= link_to user_path(current_user, category: name), {:class => "string"} do %>
+          <span class="glyphicon glyphicon-record" aria-hidden="true"></span>
+          <%= name %>（<%= count %>）
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 </div>
 <%= render 'books/books', books: @books %>

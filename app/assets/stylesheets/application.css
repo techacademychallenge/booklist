@@ -112,6 +112,9 @@ p.book-title {
 .user-profile .status ul li .status-value {
   font-size: 18px;
 }
+.user-profile .status ul li .status-value .string{
+  color: #777;
+}
 
 /* post */
 .post-string {
@@ -137,4 +140,19 @@ p.book-title {
 .post-delete {
   margin-right: 15px;
   text-align: right;
+}
+
+/* category */
+.category ul li {
+  display:inline-block;
+  text-align: center;
+  padding: 10px;
+  margin: 5px;
+  border:solid 1px lightgray;
+}
+
+.category ul li .string{
+  display:block;
+  width:100%;
+  color: #777;
 }

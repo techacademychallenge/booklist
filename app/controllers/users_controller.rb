@@ -3,8 +3,13 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    @books = @user.books.page(params[:page]).per(12)
-    @have_count = @books.count
+    if params.has_key?(:category)
+      @books = @user.books.where(category: params[:category]).page(params[:page]).per(12)
+    else
+      @books = @user.books.page(params[:page]).per(12)
+    end
+    @have_count = @user.books.count
+    @categories = @user.books.group(:category).count(:category)
   end
 
   def new

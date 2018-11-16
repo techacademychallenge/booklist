@@ -7,9 +7,9 @@ class User < ApplicationRecord
                     uniqueness: { case_sensitive: false }
   has_secure_password
   
-  has_many :haves, class_name: 'Have'
+  has_many :haves, class_name: 'Have', dependent: :destroy
   has_many :books, through: :haves
-  has_many :posts
+  has_many :posts, dependent: :destroy
   
   def have(book)
     self.haves.find_or_create_by(book_id: book.id)
