@@ -1,0 +1,57 @@
+<div class="row">
+  <aside class="col-md-3 col-sm-6 col-xs-12">
+     <div class="book">
+      <div class="panel panel-default">
+        <div class="panel-heading text-center">
+          <img src="<%= @book.image_url %>" alt="">
+        </div>
+        <div class="panel-body">
+          <p class="book-title"><%= @book.title %></p>
+          <p class="text-center"><%= link_to '楽天詳細ページ', @book.url, target: '_blank' %></p>
+          <div class="buttons text-center">
+            <%= render 'haves/have_button', book: @book %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="col-md-5 col-sm-6 col-xs-12">
+    <div class="post">
+      <div class="panel panel-default">
+        <div class="panel-heading text-center">
+          コメント
+        </div>
+        <div class="panel-body">
+          <% if logged_in? && current_user.have?(@book) %>
+            <div class="post-form">
+              <%= form_for(@post) do |f| %>
+                <div class="form-group">
+                  <%= f.text_area :content, class: 'form-control', rows: 5 %>
+                  <%= f.hidden_field :book_id, :value => @book.id %>
+                </div>
+                <%= f.submit 'Post', class: 'btn btn-primary btn-block' %>
+              <% end %>
+            </div>
+          <% end %>
+          <div class="posts-body">
+            <%= render 'posts/posts', posts: @posts %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-3">
+    <div class="want-users">
+      <div class="panel panel-default">
+        <div class="panel-heading text-center">
+          この本を持っているユーザ
+        </div>
+        <div class="panel-body">
+          <% @have_users.each do |user| %>
+            <%= link_to user.name, user_path(user) %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

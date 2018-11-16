@@ -2,7 +2,8 @@
   <div class="cover">
     <div class="cover-inner">
       <div class="cover-contents">
-        <%= form_tag(search_path,  class: 'form-inline') do %>
+        <h1>あなたの本棚を創ろう</h1>
+        <%= form_tag(root_path, method: :get, class: 'form-inline') do %>
           <div class="form-group">
             <%= text_field_tag :keyword, @keyword, class: 'form-control input-lg', placeholder: "キーワードを入力", size: 40 %>
           </div>

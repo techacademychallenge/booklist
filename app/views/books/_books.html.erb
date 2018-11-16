@@ -8,11 +8,22 @@
               <img src="<%= book.image_url %>" alt="" >
             </div>
             <div class="panel-body">
-              <p class="item-title"><%= book.title %></p>
+              <% if book.persisted? %>
+                <p class="book-title"><%= link_to book.title, book %></p>
+              <% else %>
+                <p class="book-title"><%= book.title %></p>
+              <% end %>
+              <p class="text-center"><%= link_to '楽天詳細ページ', book.url, target: '_blank' %></p>
+              <div class="buttons text-center">
+                <% if logged_in? %>
+                  <%= render 'haves/have_button', book: book %>
+                <% end %> 
+              </div>
             </div>
           </div>
         </div>
       </div>
     <% end %>
   </div>
+  <div class="text-center"><%= paginate @books %></div>
 <% end %>

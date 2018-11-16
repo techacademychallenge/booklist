@@ -1,0 +1,23 @@
+<ul class="media-list">
+  <% posts.each do |post| %>
+    <li class="media post-body">
+      <div class="media-left">
+        <img class="media-object img-rounded" src="<%= gravatar_url(post.user, { size: 50 }) %>" alt="">
+      </div>
+      <div class="media-body post-string">
+        <div class="post_data">
+          <%= link_to post.user.name, user_path(post.user) %> <span class="text-muted">posted at <%= post.created_at %></span>
+        </div>
+        <div>
+          <p><%= post.content %></p>
+        </div>
+        <div class="post-delete">
+          <% if current_user == post.user %>
+            <%= link_to "削除", post, method: :delete, data: { confirm: "削除してもよろしいですか?" }, class: 'btn btn-default btn-xs delete-btn' %>
+          <% end %>
+        </div>
+      </div>
+    </li>
+  <% end %>
+</ul>
+<%= paginate posts %>

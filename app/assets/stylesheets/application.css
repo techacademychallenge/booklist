@@ -1,19 +1,4 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
- @charset "utf-8";
+@charset "utf-8";
 
 /* body */
 body {
@@ -31,6 +16,19 @@ footer {
   margin-top: 5px;
   height: 40px;
 }
+
+.logo {
+  font-size: xx-large;
+  font-family: 'Courier New';
+  font-weight: bold;
+  color:steelblue;
+}
+
+.logo:hover {
+  text-decoration:none;
+  color:steelblue;
+}
+
 
 /* cover */
 .cover {
@@ -53,7 +51,7 @@ footer {
   position: relative;
 }
 .cover .cover-inner .cover-contents h1 {
-  margin: 0 0 20px 0;
+  margin: 150px 0 20px 0;
   color: #fff;
   font-weight: bold;
   letter-spacing: 0.15em;
@@ -61,7 +59,7 @@ footer {
 
 /* book */
 .book .panel-body {
-  height: 70px;
+  height: 150px;
 }
 .book .panel-heading {
   height: 250px;
@@ -78,3 +76,65 @@ p.book-title {
   overflow: hidden;
 }
 
+.book .buttons form {
+  display: inline-block;
+  margin: 0 5px;
+}
+
+/* users */
+.user-profile .name {
+  margin-bottom: 20px;
+}
+.user-profile .name h1 {
+  text-shadow: 1px 1px 1px #fff;
+  font-weight: bold;
+}
+.user-profile .status ul {
+  margin: 0 auto 10px;
+  padding: 0;
+  display: table;
+}
+.user-profile .status ul li {
+  width: 120px;
+  padding: 5px 0;
+  border-right: 1px solid #ddd;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  color: #777;
+}
+.user-profile .status ul li:last-child {
+  border: none;
+}
+.user-profile .status ul li .status-label {
+  font-size: 12px;
+}
+.user-profile .status ul li .status-value {
+  font-size: 18px;
+}
+
+/* post */
+.post-string {
+  word-break: break-all;
+}
+
+.post-form {
+  margin-bottom: 10px;
+}
+
+.post-body {
+  padding-bottom: 10px;
+  border-bottom: solid 1px gray;
+}
+
+.post .panel-heading {
+}
+
+.post .panel-body {
+  background-color: #fff;
+}
+
+.post-delete {
+  margin-right: 15px;
+  text-align: right;
+}

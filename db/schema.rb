@@ -10,16 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181114025754) do
+ActiveRecord::Schema.define(version: 20181115002913) do
 
   create_table "books", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "title"
     t.string   "author"
-    t.integer  "isbn"
+    t.string   "isbn"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "url"
     t.string   "image_url"
+  end
+
+  create_table "haves", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "user_id"
+    t.integer  "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_haves_on_book_id", using: :btree
+    t.index ["user_id", "book_id"], name: "index_haves_on_user_id_and_book_id", unique: true, using: :btree
+    t.index ["user_id"], name: "index_haves_on_user_id", using: :btree
+  end
+
+  create_table "posts", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "content"
+    t.integer  "user_id"
+    t.integer  "book_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_posts_on_book_id", using: :btree
+    t.index ["user_id"], name: "index_posts_on_user_id", using: :btree
   end
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -30,4 +50,8 @@ ActiveRecord::Schema.define(version: 20181114025754) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "haves", "books"
+  add_foreign_key "haves", "users"
+  add_foreign_key "posts", "books"
+  add_foreign_key "posts", "users"
 end

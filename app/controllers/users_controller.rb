@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+    @books = @user.books.page(params[:page]).per(12)
+    @have_count = @books.count
   end
 
   def new
