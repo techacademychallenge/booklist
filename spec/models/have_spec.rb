@@ -25,4 +25,11 @@ RSpec.describe Have, type: :model do
     )
     expect(have).to be_valid
   end
+  
+  # ファクトリで関連するデータを作成する
+  it "generates asscoiated data from a factory" do
+    have = FactoryBot.create(:have)
+    puts "This have user is #{have.user.inspect}"
+    puts "This have book is #{have.book.inspect}"
+  end
 end
