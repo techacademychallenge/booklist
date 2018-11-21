@@ -7,11 +7,11 @@ class HavesController < ApplicationController
       unless @book.save
         flash[:danger] = "#{@book.title}を持っているリストに追加できませんでした。"
       else
-        current_user.have(@book)
+        current_user.add(@book)
         flash[:success] = "#{@book.title}を持っているリストに追加しました。"
       end
     else
-      current_user.have(@book)
+      current_user.add(@book)
       flash[:success] = "#{@book.title}を持っているリストに追加しました。"
     end
     redirect_back(fallback_location: root_path)
@@ -20,7 +20,7 @@ class HavesController < ApplicationController
   def destroy
     @book = Book.find(params[:book_id])
     
-    current_user.unhave(@book)
+    current_user.remove(@book)
     flash[:success] = "#{@book.title}を持っているリストから除外しました。"
     
     redirect_back(fallback_location: root_path)

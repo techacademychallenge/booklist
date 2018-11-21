@@ -11,11 +11,11 @@ class User < ApplicationRecord
   has_many :books, through: :haves
   has_many :posts, dependent: :destroy
   
-  def have(book)
+  def add(book)
     self.haves.find_or_create_by(book_id: book.id)
   end
   
-  def unhave(book)
+  def remove(book)
     have = self.haves.find_by(book_id: book.id)
     have.destroy
   end

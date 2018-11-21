@@ -83,7 +83,7 @@ RSpec.describe User, type: :model do
   it "returns books have been added" do
     user = FactoryBot.create(:user)
     book = FactoryBot.create(:book)
-    user.have(book)
+    user.add(book)
     expect(user.books).to include(book)
   end
   
@@ -92,7 +92,7 @@ RSpec.describe User, type: :model do
     have = FactoryBot.create(:have)
     user = have.user
     book = have.book
-    user.unhave(book)
+    user.remove(book)
     expect(user.books).to_not include(book)
   end
  
