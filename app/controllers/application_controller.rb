@@ -9,20 +9,4 @@ class ApplicationController < ActionController::Base
       redirect_to login_url
     end
   end
-  
-  def read(result)
-    title = result['title']
-    author = result['author']
-    isbn = result['isbn']
-    url = result['itemUrl']
-    image_url = result['mediumImageUrl'].gsub('?_ex=128x128', '')
-    
-    {
-      title: title,
-      author: author,
-      isbn: isbn,
-      url: url,
-      image_url: image_url,
-    }
-  end
 end
