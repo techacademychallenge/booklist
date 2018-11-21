@@ -16,7 +16,7 @@ RSpec.describe Book, type: :model do
     book = Book.new(
       title: "タイトル",
       author: "著者",
-      isbn: "11111111111111111",
+      isbn: "1111111111111",
       url: "https://sample.com",
       image_url: "https://image.com",
       category: "category"
@@ -70,17 +70,17 @@ RSpec.describe Book, type: :model do
     expect(book.errors[:isbn]).to include("can't be blank")
   end
   
-  # ISBNが255文字のとき有効な状態であること
-  it "is valid when an isbn is 255 characters" do
-    book = FactoryBot.build(:book, isbn: @char255)
+  # ISBNが13文字のとき有効な状態であること
+  it "is valid when an isbn is 13 characters" do
+    book = FactoryBot.build(:book, isbn: "a" * 13)
     expect(book).to be_valid
   end
   
-  # ISBNが256文字のとき無効な状態であること
-  it "is invalid when an isbn is 256 characters" do
-    book = FactoryBot.build(:book, isbn: @char256)
+  # ISBNが14文字のとき無効な状態であること
+  it "is invalid when an isbn is 14 characters" do
+    book = FactoryBot.build(:book, isbn: "a" * 14)
     book.invalid?
-    expect(book.errors[:isbn]).to include("is too long (maximum is 255 characters)")
+    expect(book.errors[:isbn]).to include("is too long (maximum is 13 characters)")
   end
   
   # URLがなければ無効な状態であること
