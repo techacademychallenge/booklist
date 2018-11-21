@@ -10,6 +10,9 @@ class HavesController < ApplicationController
         current_user.have(@book)
         flash[:success] = "#{@book.title}を持っているリストに追加しました。"
       end
+    else
+      current_user.have(@book)
+      flash[:success] = "#{@book.title}を持っているリストに追加しました。"
     end
     redirect_back(fallback_location: root_path)
   end
