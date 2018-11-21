@@ -1,19 +1,19 @@
 class HavesController < ApplicationController
   def create
     @book = Book.find_or_initialize_by(isbn: params[:book_isbn])
-    
-    unless @book.persisted?
+    if @book.new_record?
       @book = Book.new_by_isbn(@book.isbn)
-      unless @book.save
-        flash[:danger] = "#{@book.title}を持っているリストに追加できませんでした。"
-      else
+      if @book.save
         current_user.add(@book)
         flash[:success] = "#{@book.title}を持っているリストに追加しました。"
+      else
+        flash[:danger] = "#{@book.title}を持っているリストに追加できませんでした。"
       end
     else
       current_user.add(@book)
       flash[:success] = "#{@book.title}を持っているリストに追加しました。"
     end
+    
     redirect_back(fallback_location: root_path)
   end
 
